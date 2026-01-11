@@ -1,3 +1,8 @@
+/*
+This code is used to test the disparity in the Jetson board, with current installation.
+Here I used two known images as samples.
+*/
+
 #include <vpi/OpenCVInterop.hpp>
 #include <vpi/algo/StereoDisparity.h>
 #include <vpi/VPI.h>
