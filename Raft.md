@@ -233,5 +233,43 @@ End For
 6.2 Project to 3D using camera intrinsics:
     X, Y, Z = PixelTo3D(D_final, intrinsics)
 
+
 6.3 Form point cloud:
     P = {(X, Y, Z) for all valid pixels}
+    
+## Mini RAFT.
+
+- We are using Jetson nano so a mini Raft methode would be enough.
+### Algorithm .
+- Your stereo algorithm should have only 5 components:
+- ✔ 1. Lightweight Encoder
+
+- Use ConvNeXt‑Tiny, MobileNetV3, or EfficientNet‑Lite  
+- → Fast, modern, optimized for TensorRT.
+- ✔ 2. 1D Correlation Layer
+
+- Use PyTorch’s built‑in ops (no custom CUDA).
+- Simple sliding window correlation.
+- ✔ 3. ConvGRU (single layer)
+
+- Use modern PyTorch with fused kernels.
+- One GRU only — not 3.
+- ✔ 4. Flow Head
+
+- Simple 2‑layer CNN.
+- ✔ 5. Upsampling
+
+- Use F.interpolate or a tiny learned mask.
+
+- This gives you:
+
+    - 20–40 FPS on Jetson Orin
+
+    - ONNX‑friendly
+
+    - TensorRT‑friendly
+
+    - Easy to train
+
+    - Easy to maintain
+
